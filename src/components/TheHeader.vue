@@ -1,96 +1,50 @@
 <template>
-    <div>v-model is for forms</div>
+    <div>
+        <button @click.once="onClick">Send</button>
+    </div>
+
+    <div
+        @mouseover="onMouseOver"
+        @mouseout="onMouseOut"
+    >
+        Mouse
+    </div>
     <br><br>
 
-    <div>
-        <label>Nome</label><br>
+    <form action="https://google.com"
+        @submit.prevent="onSubmit"
+    >
         <input
-            v-model="name"
             type="text"
-        ><br>
-        {{ name }}
-    </div>
-    <br><br>
-    
-    <div>
-        <label>Sports</label><br>
-        <select v-model="sports">
-            <option value="">Choose</option>
-            <option value="soccer">Soccer</option>
-            <option value="skating">Skating</option>
-            <option value="tennis">Tennis</option>
-        </select><br>
-        {{ sports }}
-    </div>
-    <br><br>
+            @keyup.enter="onKeyUp">
+        <button type="submit">Send</button>
+    </form>
 
-    <div>
-        <label>NewsLetter</label><br>
-        <input
-            v-model="newsletter"
-            type="radio"
-            value="Yes"
-        >
-        <input
-            v-model="newsletter"
-            type="radio"
-            value="no"
-        ><br>
-        {{ newsletter }}
-    </div>
-    <br><br>
-
-    <div>
-        <label>Contract</label><br>
-        <input
-            v-model="contract"
-            type="checkbox"
-        >Do you accept our terms?
-        {{ contract }}
-    </div>
-    <br><br>
-
-    <div>
-        <label>Colors you like the most</label><br>
-        <input
-            v-model="colors"
-            type="checkbox"
-            value="yellow"
-        >yellow<br>
-
-        <input
-            v-model="colors"
-            type="checkbox"
-            value="blue"
-        >blue<br>
-
-        <input
-            v-model="colors"
-            type="checkbox"
-            value="red"
-        >red<br>
-
-        <input
-            v-model="colors"
-            type="checkbox"
-            value="green"
-        >green<br>
-
-        {{ colors }}
-    </div>
 </template>
 
 <script>
 export default {
     name: "App",
     data() {
-        return {
-            name: "Jon Snow",
-            sports: "",
-            newsletter: "no",
-            contract: false,
-            colors: [],
-        }
+        return {}
+    },
+
+    methods: {
+        onClick($event) {
+            console.log("click", $event);
+        },
+        onMouseOver($event) {
+            console.log("mouse over", $event);
+        },
+        onMouseOut($event) {
+            console.log("mouse out", $event);
+        },
+        onSubmit($event) {
+            console.log("submit", $event);
+        },
+        onKeyUp($event) {
+            console.log("keyup", $event);
+        },
     }
 }
 </script>
