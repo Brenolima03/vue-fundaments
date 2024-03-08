@@ -1,35 +1,33 @@
 <template>
   <div>
-    {{ fullName }}
-
-    <h2>Ongoing todos</h2>
-    <div
-      v-for="todo in incompleteTodos"
-      :key="todo.id"
-    >
-      {{ todo.title }}
-    </div>
+    <input
+      v-model="name"
+      type="text"
+    ><br><br>
+    {{ name }}
     <br><br>
 
-    <h2>Finished todos</h2>
-    <div
-      v-for="todo in completeTodos"
-      :key="todo.id"
-    >
-      {{ todo.title }}
-    </div>
-    <br><br>
+    <label>First name: </label>
+    <input
+      v-model="user.firstName"
+      type="text"
+    ><br>
+    <label>Last name: </label>
+    <input
+      v-model="user.lasttName"
+      type="text"
+    ><br><br>
+    {{ user.firstName }} {{ user.lasttName }}
+    <br><br><br>
 
-    <h2>Todos</h2>
-    <div
-      v-for="todo in todos"
-      :key="todo.id"
+    <select
+      v-model="pageCount"
     >
-      <input
-        v-model="todo.completed"
-        type="checkbox">
-      {{ todo.title }}
-    </div>
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select><br><br>
+    {{ pageCount }}
   </div>
 </template>
 
@@ -38,60 +36,41 @@ export default {
   name: "App",
   data() {
     return {
+      name: '',
+      pageCount: 5,
       user: {
-        firstName: "Jon",
-        lastName: "Snow",
+        firstName: "",
+        lasttName: "",
+      }
+    };
+  },
+
+  watch: {
+    name() {
+      this.saveUsername();
+    },
+    pageCount() {
+      this.changePage();
+    },
+    user: {
+      handler() {
+        console.log("User updated.");
       },
-      todos: [
-        {
-          "userId": 1,
-          "id": 1,
-          "title": "delectus aut autem",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 2,
-          "title": "quis ut nam facilis et officia qui",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 3,
-          "title": "fugiat veniam minus",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 4,
-          "title": "et porro tempora",
-          "completed": true
-        },
-        {
-          "userId": 1,
-          "id": 5,
-          "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-          "completed": false
-        }
-      ]
-    }
+      deep: true,
+    },
   },
 
-  computed: {
-    fullName() {
-      return `${this.user.firstName} ${this.user.lastName}`;
-    },
+  computed: {},
 
-    incompleteTodos() {
-      return this.todos.filter(todo => !todo.completed);
+  methods: {
+    saveUsername() {
+      console.log("Ajax");
+      console.log(this.name);
     },
-
-    completeTodos() {
-      return this.todos.filter(todo => todo.completed);
+    changePage() {
+      console.log("Ajax changePage");
     }
-  },
-
-  methods: {}
+  }
 }
 </script>
 
