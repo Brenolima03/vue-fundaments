@@ -1,29 +1,24 @@
 <template>
   <div>
-    <TheHeader>
-      <template v-slot:title></template>
-      <h1>Home</h1>
-      <template v-slot:description></template>
-    </TheHeader>
-    <div class="card">
-      Test
-    </div>
-    <div>
-      <BaseCard/>
-    </div>
+    <BaseAlert
+      :variant="variant"
+    >
+      {{ text }}
+    </BaseAlert>
 
   </div>
 </template>
 
 <script>
-import TheHeader from '@/components/TheHeader.vue';
-import BaseCard from '@/components/BaseCard.vue';
+import BaseAlert from '@/components/BaseAlert.vue';
 
 export default {
   name: "App",
-  components: { TheHeader, BaseCard }, 
+  components: { BaseAlert }, 
   data() {
     return {
+      variant: "success",
+      text: "Form sent successfully"
     };
   },
 
