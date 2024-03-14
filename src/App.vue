@@ -1,33 +1,19 @@
 <template>
-  <div>
-    <BaseAlert
-      :variant="variant"
-    >
-      {{ text }}
-    </BaseAlert>
-
-  </div>
+  <nav>
+    <RouterLink to="/">Home</RouterLink> |
+    <RouterLink :to="DinamicRoute">Services</RouterLink> |
+    <RouterLink to="/about">About</RouterLink>
+  </nav>
+  <router-view/>
 </template>
 
 <script>
-import BaseAlert from '@/components/BaseAlert.vue';
-
 export default {
-  name: "App",
-  components: { BaseAlert }, 
+  
   data() {
     return {
-      variant: "success",
-      text: "Form sent successfully"
-    };
-  },
-
-  watch: {
-  },
-
-  computed: {},
-
-  methods: {
+      DinamicRoute: { name: 'services' }
+    }
   }
 }
 </script>
@@ -39,6 +25,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
