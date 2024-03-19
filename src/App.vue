@@ -2,41 +2,41 @@
   <nav>
     <RouterLink to="/">Home</RouterLink> |
     <RouterLink :to="DinamicRoute">Services</RouterLink> |
+    <RouterLink to="/user/10">Users</RouterLink> |
     <RouterLink to="/about">About</RouterLink>
   </nav>
   <router-view/>
 </template>
 
 <script>
-export default {
-  
-  data() {
-    return {
-      DinamicRoute: { name: 'services' }
+  export default {
+    
+    data() {
+      return {
+        DinamicRoute: { name: 'services' }
+      }
     }
   }
-}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+  }
 
-nav {
-  padding: 30px;
-}
+  nav {
+    padding: 30px;
+  }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
 
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+  nav a.router-link-exact-active {
+    color: #42b983;
+  }
 </style>
