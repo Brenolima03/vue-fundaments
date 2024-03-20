@@ -1,21 +1,19 @@
 <template>
-  <nav>
-    <RouterLink to="/">Home</RouterLink> |
-    <RouterLink :to="DinamicRoute">Services</RouterLink> |
-    <RouterLink to="/user/10">Users</RouterLink> |
-    <RouterLink to="/about">About</RouterLink>
-  </nav>
-  <router-view/>
+  <div>
+    <HelloWorld/>
+  </div>
 </template>
 
 <script>
+  import HelloWorld from '@/components/HelloWorld.vue'
   export default {
-    
+    name: "App",
+    components: {
+      HelloWorld
+    },
     data() {
-      return {
-        DinamicRoute: { name: 'services' }
-      }
-    }
+      return {}
+    },
   }
 </script>
 
