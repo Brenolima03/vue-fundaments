@@ -1,10 +1,11 @@
 <template>
   <div>
     <AppProducts/>
-    {{ $store.getters.total }}
-        <pre>
-            {{ $store.state.cart }}
-        </pre>
+    <!-- {{ $store.getters.total }} -->
+    <pre>
+      {{ $store.state.cart }}
+    </pre>
+    {{ $store.state.user.firstName }} {{ $store.state.user.lastName }}
     <button @click="updateUser()">Update user</button>
   </div>
 </template>
@@ -26,7 +27,11 @@
           lastName: "Lima",
           email: "email@email.com"
         }
-        this.$store.commit("storeUser", newUser)
+        // this.$store.commit("storeUser", newUser);
+        this.$store.dispatch("storeUser", newUser)
+        .then(() => {
+          console.log("Finished");
+        })
       }
     },
   }
