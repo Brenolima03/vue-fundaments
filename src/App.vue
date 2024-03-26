@@ -1,18 +1,32 @@
 <template>
   <div>
-    <HelloWorld/>
+    <AppProducts/>
+        <pre>
+            {{ $store.state.cart }}
+        </pre>
+    <button @click="updateUser()">Update user</button>
   </div>
 </template>
 
 <script>
-  import HelloWorld from '@/components/HelloWorld.vue'
+  import AppProducts from './components/products/AppProducts.vue';
   export default {
     name: "App",
     components: {
-      HelloWorld
+      AppProducts
     },
     data() {
       return {}
+    },
+    methods: {
+      updateUser() {
+        const newUser = {
+          firstName: "Breno",
+          lastName: "Lima",
+          email: "email@email.com"
+        }
+        this.$store.commit("storeUser", newUser)
+      }
     },
   }
 </script>
