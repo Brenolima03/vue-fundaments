@@ -1,6 +1,7 @@
 <template>
   <div>
     <AppProducts/>
+    {{ $store.getters.total }}
         <pre>
             {{ $store.state.cart }}
         </pre>
