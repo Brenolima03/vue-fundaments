@@ -1,63 +1,42 @@
 <template>
   <h4>User</h4>
-  <br>
-  {{ user.first_name }}
-  {{ user.last_name }}
-  <br><br>
-  <h4>Admin</h4>
-  {{ admin.first_name }}
-  {{ admin.last_name }}
-  <!-- If you click on it, the name will change. -->
-  <div class="square" @click="changeName()">
-    
-  </div>
-  <AppProduct/>
+  {{ fullName }}
+
+  <button @click="user.first_name = 'Mauricio'">Update</button>
 </template>
 
 <script>
-  import { ref, reactive } from 'vue';
-  import AppProduct from './components/products/AppProduct.vue';
+  import { ref, computed, watch } from 'vue';
 
   export default {
     name: "App",
 
     components: {
-      AppProduct,
     },
+
     setup() {
-      const user = reactive({
+      const user = ref({
         first_name: "Eunice",
         last_name: "Lima"
       })
 
-      const admin = ref({
-        first_name: "Admin",
-        last_name: "Master"
+      const fullName = computed(() => {
+        return `${user.value.first_name} ${user.value.last_name}`
       })
 
-      let name = "Breno";
+      watch(() => user.value.first_name, () => {
+        console.log("Logic");
+      })
 
-      const changeName = () => {
-        name = "Jon Snow";
-        user.first_name = "Mauricio";
-        admin.value.first_name = "Breno"
-      }
       return {
         user,
-        admin,
-        name,
-        changeName
+        fullName
       }
     }
   }
 </script>
 
 <style>
-  .square {
-    width: 100px;
-    height: 100px;
-    background-color: green;
-  }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
