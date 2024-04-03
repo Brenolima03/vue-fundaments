@@ -1,43 +1,41 @@
 <template>
-  <div>
-    <AppProducts/>
-    <!-- {{ $store.getters.total }} -->
-    <pre>
-      {{ $store.state.cart }}
-    </pre>
-    {{ $store.state.user.firstName }} {{ $store.state.user.lastName }}
-    <button @click="updateUser()">Update user</button>
+  {{ name }}
+  <!-- If you click on it, the name will change. -->
+  <div class="square" @click="changeName='Jon'">
+    
   </div>
+  <AppProduct/>
 </template>
 
 <script>
-  import AppProducts from './components/products/AppProducts.vue';
+  import AppProduct from './components/products/AppProduct.vue';
+
   export default {
     name: "App",
+
     components: {
-      AppProducts
+      AppProduct,
     },
-    data() {
-      return {}
-    },
-    methods: {
-      updateUser() {
-        const newUser = {
-          firstName: "Breno",
-          lastName: "Lima",
-          email: "email@email.com"
-        }
-        // this.$store.commit("storeUser", newUser);
-        this.$store.dispatch("storeUser", newUser)
-        .then(() => {
-          console.log("Finished");
-        })
+    setup() {
+      let name = "Breno";
+
+      const changeName = () => {
+        name = "Jon Snow";
       }
-    },
+      return {
+        name,
+        changeName
+      }
+    }
   }
 </script>
 
 <style>
+  .square {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+  }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
