@@ -1,13 +1,21 @@
 <template>
-  {{ name }}
+  <h4>User</h4>
+  <br>
+  {{ user.first_name }}
+  {{ user.last_name }}
+  <br><br>
+  <h4>Admin</h4>
+  {{ admin.first_name }}
+  {{ admin.last_name }}
   <!-- If you click on it, the name will change. -->
-  <div class="square" @click="changeName='Jon'">
+  <div class="square" @click="changeName()">
     
   </div>
   <AppProduct/>
 </template>
 
 <script>
+  import { ref, reactive } from 'vue';
   import AppProduct from './components/products/AppProduct.vue';
 
   export default {
@@ -17,12 +25,26 @@
       AppProduct,
     },
     setup() {
+      const user = reactive({
+        first_name: "Eunice",
+        last_name: "Lima"
+      })
+
+      const admin = ref({
+        first_name: "Admin",
+        last_name: "Master"
+      })
+
       let name = "Breno";
 
       const changeName = () => {
         name = "Jon Snow";
+        user.first_name = "Mauricio";
+        admin.value.first_name = "Breno"
       }
       return {
+        user,
+        admin,
         name,
         changeName
       }
